@@ -236,22 +236,55 @@ console.log(
  stored in a new collection (array or object)
  */
 
+const numArray = [10, 12, 6, 55, 39];
+const mappedNumArray = numArray.map((num) => num * 2);
+console.log(mappedNumArray);
+
 //to get all students names in a new array
+
+// This is a the new version of a nameless funtion. Nameless functions cannot be called outside
+const studentNames = data.map((student) => student.studentName);
+console.log(studentNames);
+
+// This is the old version of a nameless function
+const studentTuition = data.map(function (student) {
+  return student.tuitionPaid;
+});
+console.log(studentTuition);
 
 /**
  *11
  Array filter: to filter certian data in regarded to a statement stored in a new collection
  */
 
+const numsAbove15 = numArray.filter((num) => num > 15);
+console.log(numsAbove15);
+
 //Filter all students born in 2002 using filter and includes method
 
+const studentsBorn2022 = data.filter((student) =>
+  student.dateOfBirth.includes("2002"),
+);
+console.log(studentsBorn2022);
 /**
  *12
  Array reduce: To reduce an array to a single value 
  Ex: display the total of all students tuition paid
  */
 
+const sumNumbers = numArray.reduce(
+  (accumulator, item) => accumulator + item,
+  0,
+);
+console.log(sumNumbers);
+
 //the reduce method takes two parameters, the first is a callback function and the second is the initial value.
+
+const sumTuition = data.reduce((sum, student) => sum + student.tuitionPaid, 0);
+console.log(sumTuition);
+// This works with strings as well, but adds them through concatination
+const funnyNums = ["1", "2", "3", "4", "5"];
+console.log(funnyNums.reduce((acc, num) => acc + num, 0));
 
 /**
  *13
@@ -259,9 +292,15 @@ console.log(
  NOTE: This method changes the orginal array. If you want to avoid this, use .slice() method before sorting 
  
  */
+const ascendingNums = numArray.sort((a, b) => a - b);
+console.log(ascendingNums);
+const descendingNums = numArray.sort((a, b) => b - a);
+console.log(descendingNums);
 
 //sort students by paid tuition
 
+const studentsPaid = data.sort((a, b) => a.tuitionPaid - b.tuitionPaid);
+console.log(studentsPaid);
 /**
  *14
  Working with immutable arrays
@@ -286,6 +325,17 @@ const newerStudent = {
   },
 };
 
+const newData = [...data, newerStudent];
+console.log(newData);
+
 //Remove a student object using filter method
 
+const removeStudent = newData.filter((student) => student.id === 1);
+console.log(removeStudent);
+
 //Update a student object using the map method
+
+const updateData = newData.map((student) =>
+  student.id === 3 ? { ...student, hasAttendedOrientation: true } : student,
+);
+console.log(updateData);
