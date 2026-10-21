@@ -1,4 +1,4 @@
-export interface fruit {
+export interface Fruit {
   id: number;
   product: string;
   prices: number[];
@@ -6,7 +6,7 @@ export interface fruit {
   quantity: number;
 }
 
-const fruits: fruit[] = [
+const fruits: Fruit[] = [
   {
     id: 1,
     product: "Apple",

@@ -1,16 +1,29 @@
 import FruitCard from "./FruitCard";
-import type { fruit } from "../data/data";
+import type { ProductContainerProps } from "./FruitApp";
 
-interface fruitData {
-  data: fruit[];
-}
-
-export default function FruitContainer({ data }: fruitData) {
+export default function FruitContainer({
+  data,
+  productInfo,
+  handleChangeQty,
+}: ProductContainerProps) {
   return (
     <div className="FruitContainer">
-      {data.map((product) => (
-        <FruitCard key={product.id} {...product} />
-      ))}
+      {data.map((fruit) => {
+        const info = productInfo.find(
+          (information) => information.id === fruit.id,
+        );
+        if (!info) return null;
+        return (
+          <FruitCard
+            key={fruit.id}
+            {...fruit}
+            productInfo={info}
+            handleChangeQty={(delta: number) =>
+              handleChangeQty(fruit.id, delta)
+            }
+          />
+        );
+      })}
     </div>
   );
 }

@@ -1,18 +1,25 @@
-import type { fruit } from "../data/data";
+import type { Fruit } from "../data/data";
 import { useState } from "react";
+import type { ProductInfo } from "./FruitApp";
 
-interface ProductInfo {
-  quantity: number;
-  price: number;
+interface ProductCardProps extends Fruit {
+  productInfo: ProductInfo;
+  handleChangeQty: (delta: number) => void;
 }
 
-export default function FruitCard({ product, prices, img, quantity }: fruit) {
+export default function FruitCard({
+  product,
+  prices,
+  img,
+  productInfo,
+  handleChangeQty,
+}: ProductCardProps) {
   // Compound state containing selected price and quantity
-  const [productInfo, setProductInfo] = useState<ProductInfo>({
+  const [setProductInfo] = useState<ProductCardProps>({
     // Pass in an object to useState using curly brackets
     // Also, interface being passed into a state
-    quantity,
-    price: prices[0],
+    quantity: productInfo.quantity,
+    prices: prices[0],
   });
 
   return (
@@ -43,32 +50,14 @@ export default function FruitCard({ product, prices, img, quantity }: fruit) {
       <br />
       <button //To change an object with onclick you need to use
         // a callback function to return an object based on the previous object
-        onClick={() =>
-          setProductInfo((previous) => {
-            return {
-              ...previous,
-              // Cannot short-circuit here
-              quantity: previous.quantity > 0 ? previous.quantity - 1 : 0,
-            };
-          })
-        }
+        onClick={() => handleChangeQty(-1)}
       >
         -
       </button>
       <span>{productInfo.quantity}</span>
-      <button
-        onClick={() =>
-          setProductInfo((previous) => {
-            return {
-              ...previous,
-              quantity: previous.quantity + 1,
-            };
-          })
-        }
-      >
-        +
-      </button>
+      <button onClick={() => handleChangeQty(1)}>+</button>
       <p>Total: ${(productInfo.quantity * productInfo.price).toFixed(2)}</p>
+      <button>Add to Cart</button>
     </div>
   );
 }

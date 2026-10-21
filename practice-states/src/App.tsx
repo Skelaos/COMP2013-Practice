@@ -1,15 +1,11 @@
 import "./App.css";
-import Counter from "./components/Counter";
-import NewCounter from "./components/NewCounter";
 import data from "./data/data";
-import FruitContainer from "./components/FruitContainer";
+import FruitsApp from "./components/FruitApp.tsx";
 
 function App() {
   return (
     <>
-      <Counter />
-      <NewCounter />
-      <FruitContainer data={data} />
+      <FruitsApp data={data} />
     </>
   );
 }
