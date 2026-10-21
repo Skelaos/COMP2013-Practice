@@ -1,14 +1,14 @@
 interface DiamondCardProps {
   image: string;
   name: string;
-  price: string;
+  price?: string;
   sale?: boolean;
 }
 
 export default function DiamondCard({
   image,
   name,
-  price,
+  price = "Unknown",
   sale,
 }: DiamondCardProps) {
   return (
