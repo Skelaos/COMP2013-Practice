@@ -1,9 +1,11 @@
 import "./App.css";
+import DiamondContainer from "./components/DiamondContainer";
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <h1>Diamond World</h1>
+      <DiamondContainer />
     </>
   );
 }
