@@ -1,0 +1,12 @@
+.FruitContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.FruitCard {
+  margin: 5px auto;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+}
