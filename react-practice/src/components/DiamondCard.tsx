@@ -5,13 +5,18 @@ interface DiamondCardProps {
   sale?: boolean;
 }
 
-export default function DiamondCard(props: DiamondCardProps) {
+export default function DiamondCard({
+  image,
+  name,
+  price,
+  sale,
+}: DiamondCardProps) {
   return (
     <div className="DiamondCard">
-      <img src={props.image} alt="" width="100px" />
-      <h2>{props.name}</h2>
-      <p>{props.price}</p>
-      <p style={{ color: "red", fontWeight: "bold" }}>{props.sale && "SALE"}</p>
+      <img src={image} alt="" width="100px" />
+      <h2>{name}</h2>
+      <p>{price}</p>
+      <p style={{ color: "red", fontWeight: "bold" }}>{sale && "SALE"}</p>
     </div>
   );
 }
