@@ -1,9 +1,4 @@
-interface DiamondCardProps {
-  image: string;
-  name: string;
-  price?: string;
-  sale?: boolean;
-}
+import type { DiamondCardProps } from "../data/data";
 
 export default function DiamondCard({
   image,

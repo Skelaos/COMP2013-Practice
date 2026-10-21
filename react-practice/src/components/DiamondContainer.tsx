@@ -1,24 +1,18 @@
 import DiamondCard from "./DiamondCard";
+import type { DiamondCardProps } from "../data/data"; // Import the interface as a type
 
-export default function DiamondContainer() {
+// Create a new interface for an array of DiamondCardProps
+// The imported interface is an object interface, but data is an array of objects and so needs an array interface
+interface DiamondContainerProps {
+  data: DiamondCardProps[];
+}
+
+export default function DiamondContainer({ data }: DiamondContainerProps) {
   return (
     <div className="DiamondContainer">
-      <DiamondCard
-        image="src\assets\pexels-the-glorious-studio-10475791.jpg"
-        name="Princess"
-        price="$1,000"
-        sale={true}
-      />
-      <DiamondCard
-        image="src\assets\pexels-the-glorious-studio-10475793.jpg"
-        name="Queen"
-        sale={false}
-      />
-      <DiamondCard
-        image="src\assets\pexels-the-glorious-studio-10475794.jpg"
-        name="Empress"
-        price="$3,000"
-      />
+      {data.map((listing) => (
+        <DiamondCard key={listing.id} {...listing} />
+      ))}
     </div>
   );
 }
